@@ -1,9 +1,9 @@
 # Dump1090 Flightaware Docker image
 
-[![Docker Automated build](https://img.shields.io/docker/automated/jraviles/dump1090)](https://hub.docker.com/r/jraviles/dump1090/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/jraviles/dump1090)](https://hub.docker.com/r/jraviles/dump1090/)
-[![Build Status](https://travis-ci.com/jeanralphaviles/dump1090-docker.svg?branch=master)](https://travis-ci.com/jeanralphaviles/dump1090-docker)
-[![GitHub](https://img.shields.io/github/license/jeanralphaviles/dump1090-docker.svg)](https://github.com/jeanralphaviles/dump1090-docker)
+[![Docker Automated build](https://img.shields.io/docker/automated/skrashevich/dump1090)](https://hub.docker.com/r/skrashevich/dump1090/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/skrashevich/dump1090)](https://hub.docker.com/r/skrashevich/dump1090/)
+[![Build Status](https://travis-ci.com/skrashevich/dump1090-docker.svg?branch=master)](https://travis-ci.com/skrashevich/dump1090-docker)
+[![GitHub](https://img.shields.io/github/license/skrashevich/dump1090-docker.svg)](https://github.com/skrashevich/dump1090-docker)
 
 Run [dump1090-fa](https://github.com/flightaware/dump1090) (Flightaware fork)
 quickly and easily with Docker! No need to worry about installing drivers or
@@ -21,7 +21,7 @@ deployment.
 | [ADSBHub](http://www.adsbhub.org)                |
 
 Visit dump1090-docker on
-[Docker Hub](https://hub.docker.com/r/jraviles/dump1090) :whale: or [Github](https://github.com/jeanralphaviles/dump1090-docker/).
+[Docker Hub](https://hub.docker.com/r/skrashevich/dump1090) :whale: or [Github](https://github.com/skrashevich/dump1090-docker/).
 
 
 ## Usage
@@ -34,7 +34,7 @@ receiver.
 * Using vanilla Docker
 
   ```shell
-  docker run --rm -d --device /dev/bus/usb --name dump1090 -p 8080:8080 jraviles/dump1090:latest
+  docker run --rm -d --device /dev/bus/usb --name dump1090 -p 8080:8080 skrashevich/dump1090:latest
   ```
 
 * Using docker-compose
@@ -52,12 +52,12 @@ docker-compose up -d
 To feed data to Flightaware you first must specify your Flightaware username,
 password, and optionally your **FEEDER_ID**
 [(after claiming it on Flightaware)](https://flightaware.com/adsb/piaware/claim) in
-[flightaware\_credentials.txt](https://github.com/jeanralphaviles/dump1090-docker/blob/master/flightaware_credentials.txt).
+[flightaware\_credentials.txt](https://github.com/skrashevich/dump1090-docker/blob/master/flightaware_credentials.txt).
 
 ### Building the Docker image locally
 
 ```shell
-docker build -t jraviles/dump1090:latest .
+docker build -t skrashevich/dump1090:latest .
 ```
 
 ## Skyview
@@ -70,7 +70,7 @@ map in real time.
 
 Visit <http://localhost:8080>.
 
-![Skyview](https://github.com/jeanralphaviles/dump1090-docker/raw/master/images/skyview.png)
+![Skyview](https://github.com/skrashevich/dump1090-docker/raw/master/images/skyview.png)
 
 ## Feeding live flight data to Flightaware
 
@@ -85,7 +85,7 @@ ADS-B data from dump1090-docker can be
   1. Run [docker-piaware](https://github.com/wnagele/docker-piaware). To feed
   data to Flightaware you first must specify your Flightaware username,
   password, and optionally your **FEEDER_ID** in
-  [flightaware\_credentials.txt](https://github.com/jeanralphaviles/dump1090-docker/blob/master/flightaware_credentials.txt).
+  [flightaware\_credentials.txt](https://github.com/skrashevich/dump1090-docker/blob/master/flightaware_credentials.txt).
 
      ```shell
      docker run --rm -d --link dump1090:beast --name piaware \
@@ -113,7 +113,7 @@ ADS-B data from dump1090-docker can be
 
      If using docker-compose, you must specify your Flightaware username,
      password, and optionally your **FEEDER_ID** in
-     [flightaware\_credentials.txt](https://github.com/jeanralphaviles/dump1090-docker/blob/master/flightaware_credentials.txt).
+     [flightaware\_credentials.txt](https://github.com/skrashevich/dump1090-docker/blob/master/flightaware_credentials.txt).
 
      ```shell
      docker-compose up -d piaware dump1090
@@ -174,7 +174,7 @@ of [docker-adsbexchange](https://hub.docker.com/search?q=marcelstoer%2Fadsbexcha
      dump1090.
 
      If using docker-compose, you must specify your MLAT properties in
-     [adsbexchange\_mlat\_properties.txt](https://github.com/jeanralphaviles/dump1090-docker/blob/master/adsbexchange_mlat_properties.txt).
+     [adsbexchange\_mlat\_properties.txt](https://github.com/skrashevich/dump1090-docker/blob/master/adsbexchange_mlat_properties.txt).
 
      ```shell
      docker-compose up -d dump1090 adsbexchange-feed adsbexchange-mlat
@@ -188,7 +188,7 @@ have claimed. If unset, adsbexchange-docker will feed the default port: 30005\.
 To set **RECEIVER_PORT** using docker-compose you must add an
 [environment section](https://docs.docker.com/compose/compose-file/#environment) to
 adsbexchange-feed's service in
-[docker-compose.yml](https://github.com/jeanralphaviles/dump1090-docker/blob/master/docker-compose.yml).
+[docker-compose.yml](https://github.com/skrashevich/dump1090-docker/blob/master/docker-compose.yml).
 
 ## Feeding live flight data to ADSBHub
 
@@ -235,7 +235,7 @@ the help of [adsbhub-docker](https://github.com/jeanralphaviles/adsbhub-docker).
    # Ensure you have run 'docker login'
    export DOCKER_CLI_EXPERIMENTAL=enabled
    docker buildx create --use --name my-builder
-   docker buildx build --push --platform linux/amd64,linux/arm64,linux/arm/v7 -t jraviles/dump1090:latest .
+   docker buildx build --push --platform linux/amd64,linux/arm64,linux/arm/v7 -t skrashevich/dump1090:latest .
    docker buildx rm my-builder
    ```
 
